@@ -20,16 +20,21 @@
             </div>
             </div>
           </div>
+          {{#if currentUser}}
           <form class="new-message">
             <div class="row twoPercentTopPadding">
               <div class="col-9">
-              <input type="text" class="form-control" name="messageText" placeholder="Type your message here..." />
+                  <input type="text" class="form-control" name="messageText" placeholder="Type your message here..." />
             </div>
             <div class="col-3">
               <button  class="btn btn-danger">Submit</button>
             </div>
             </div>
-          </form> 
+          </form>
+          {{/if}} 
+          <div class="row twoPercentTopPadding">
+            {{> loginButtons}}
+          </div> 
       </div>
     </div>
     
@@ -40,13 +45,13 @@
   <div class="col-12 twoPercentTopPadding">
     <div class="card bg-primary">
       <div class="row">
-        <div class="col-1">
+        <div class="col-2">
            <span class="messageTextColor messageNamePadding" style="font-size: large; white-space:nowrap">{{sender}}</span>
         </div>
         <div class="col-3">
            <span class="messageTextColor messageNamePadding" style="font-size: small; white-space:nowrap">{{formattedDate}}</span>
         </div>
-        <div class="col-8">
+        <div class="col-5">
           <span class="messageTextColor messageNamePadding">{{text}}</span>
         </div>
       </div>

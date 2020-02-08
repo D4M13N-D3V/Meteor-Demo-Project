@@ -32,7 +32,7 @@ Template.body.events({
  
     // Insert a task into the collection
     Messages.insert({
-      sender:"John", text:text, sentDate: new Date()
+      sender: Meteor.user().username, text:text, sentDate: new Date()
     });
     console.log(Messages.find().count());
     if(Messages.find().count()>10){
