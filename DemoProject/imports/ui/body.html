@@ -1,59 +1,56 @@
 <body>
-  <div class="container">
-    <div class="row">
-        <div class="col-6 offset-3">
-          <div class="row twoPercentTopPadding">
-            <div class="col-12">
-              <div class="card">
-                <h1 class="text-center">Messaging App</h1>
-              </div>
-            </div>
-          </div>
-          <div class="row twoPercentTopPadding">
-            <div class="col-12">
-              <div class="card">
-                <div class="row">
-                  {{#each tasks}}
-                     {{> message}}
-                  {{/each}}
-                </div>
-            </div>
-            </div>
-          </div>
-          {{#if currentUser}}
-          <form class="new-message">
-            <div class="row twoPercentTopPadding">
-              <div class="col-9">
-                  <input type="text" class="form-control" name="messageText" placeholder="Type your message here..." />
-            </div>
-            <div class="col-3">
-              <button  class="btn btn-danger">Submit</button>
-            </div>
-            </div>
-          </form>
-          {{/if}} 
-          <div class="row twoPercentTopPadding">
-            {{> loginButtons}}
-          </div> 
+
+
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        Chat Application Demo
       </div>
-    </div>
-    
-  </div>
+      <div class="msger-header-options">
+        {{> loginButtons}}
+      </div>
+    </header>
+  
+    <main class="msger-chat" id="out">
+      {{#each tasks}}
+        {{> message}}
+      {{/each}}
+    </main>
+    <script>
+      //https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/18614561
+      const out = document.getElementById("out")
+let c = 0
+setInterval(function() {
+      out.scrollTop = out.scrollHeight - out.clientHeight
+}, 500)
+function format () {
+  return Array.prototype.slice.call(arguments).join(' ')
+}
+    </script>
+    {{#if currentUser}}
+    <form class="msger-inputarea new-message">
+      <input type="text" class="msger-input" name="messageText" placeholder="Enter your message...">
+      <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+    {{/if}} 
+  </section>
 </body>
  
+
+
+
+
 <template name="message">
-  <div class="col-12 twoPercentTopPadding">
-    <div class="card bg-primary">
-      <div class="row">
-        <div class="col-2">
-           <span class="messageTextColor messageNamePadding" style="font-size: large; white-space:nowrap">{{sender}}</span>
-        </div>
-        <div class="col-3">
-           <span class="messageTextColor messageNamePadding" style="font-size: small; white-space:nowrap">{{formattedDate}}</span>
-        </div>
-        <div class="col-5">
-          <span class="messageTextColor messageNamePadding">{{text}}</span>
-        </div>
+  <div class="msg left-msg">
+
+    <div class="msg-bubble">
+      <div class="msg-info">
+        <div class="msg-info-name">{{sender}}</div>
+        <div class="msg-info-time">{{formattedDate}}</div>
+      </div>
+
+      <div class="msg-text">
+        {{text}}
       </div>
     </div>
   </div>
