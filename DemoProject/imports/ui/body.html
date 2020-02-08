@@ -1,17 +1,55 @@
 <body>
-    <div class="container">
-      <header>
-        <h1>Todo List</h1>
-      </header>
-   
-      <ul>
-        {{#each tasks}}
-          {{> task}}
-        {{/each}}
-      </ul>
+  <div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+          <div class="row twoPercentTopPadding">
+            <div class="col-12">
+              <div class="card">
+                <h1 class="text-center">Messaging App</h1>
+              </div>
+            </div>
+          </div>
+          <div class="row twoPercentTopPadding">
+            <div class="col-12">
+              <div class="card">
+                <div class="row">
+                  {{#each tasks}}
+                     {{> message}}
+                  {{/each}}
+                </div>
+            </div>
+            </div>
+          </div>
+          <form class="new-task">
+            <div class="row twoPercentTopPadding">
+              <div class="col-9">
+              <input type="text" class="form-control" name="text" placeholder="Type your message here..." />
+            </div>
+            <div class="col-3">
+              <button  class="btn btn-danger">Submit</button>
+            </div>
+            </div>
+          </form> 
+      </div>
     </div>
-  </body>
-   
-  <template name="task">
-    <li>{{text}}</li>
-  </template>
+    
+  </div>
+</body>
+ 
+<template name="message">
+  <div class="col-12 twoPercentTopPadding">
+    <div class="card bg-primary">
+      <div class="row">
+        <div class="col-1">
+           <span class="messageTextColor messageNamePadding" style="font-size: large; white-space:nowrap">{{sender}}</span>
+        </div>
+        <div class="col-3">
+           <span class="messageTextColor messageNamePadding" style="font-size: small; white-space:nowrap">{{formattedDate}}</span>
+        </div>
+        <div class="col-8">
+          <span class="messageTextColor messageNamePadding">{{text}}{{text}}{{text}}{{text}}{{text}}{{text}}{{text}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
