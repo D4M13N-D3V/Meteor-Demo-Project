@@ -20,3 +20,27 @@ Template.message.helpers({
     return dateStr;
   }
 })
+
+Template.body.events({
+  'submit .new-message'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+ 
+    // Get value from form element
+    const target = event.target;
+    const text = target.messageText.value;
+ 
+    // Insert a task into the collection
+    Messages.insert({
+      sender:"John", text:text, sentDate: new Date()
+    });
+    console.log(Messages.find().count());
+    if(Messages.find().count()>10){
+     var first = Messages.findOne();
+      Messages.remove({_id:first._id},1);
+    }
+    
+    // Clear form
+    target.messageText.value = '';
+  },
+});
